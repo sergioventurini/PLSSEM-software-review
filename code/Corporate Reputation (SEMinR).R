@@ -6,9 +6,7 @@
 # Springer, 2022
 
 if (!require(seminr, quietly = TRUE)) {
-  install.packages("devtools")
-  library(devtools)
-  install_github("https://github.com/sem-in-r/seminr")
+  install.packages("seminr")
   library(seminr)
 }
 
@@ -67,3 +65,44 @@ corprep_boot <- bootstrap_model(corprep_est, nboot = 500, cores = nc, seed = 123
 corprep_boot_sum <- summary(corprep_boot, alpha = 0.05)
 corprep_boot_sum
 plot(corprep_boot, title = "Corporate Reputation Model (using bootstrap)")
+
+# Multigroup analysis (not reported in the chapter)
+corprep_est <- estimate_pls(
+  data = corp_rep_data[, c("education", corp_indic)],
+  measurement_model = corprep_mm,
+  structural_model = corprep_sm,
+  missing_value = -99,
+  inner_weights = path_factorial,
+  missing = casewise_deletion)
+
+## education == 1 vs. all the rest
+corprep_mga_1 <- estimate_pls_mga(
+  pls_model = corprep_est,
+  condition = corp_rep_data$education == 1,
+  nboot = 500,
+  seed = 123)
+corprep_mga_1
+
+## education == 2 vs. all the rest
+corprep_mga_2 <- estimate_pls_mga(
+  pls_model = corprep_est,
+  condition = corp_rep_data$education == 2,
+  nboot = 500,
+  seed = 123)
+corprep_mga_2
+
+## education == 3 vs. all the rest
+corprep_mga_3 <- estimate_pls_mga(
+  pls_model = corprep_est,
+  condition = corp_rep_data$education == 3,
+  nboot = 500,
+  seed = 123)
+corprep_mga_3
+
+## education == 4 vs. all the rest
+corprep_mga_4 <- estimate_pls_mga(
+  pls_model = corprep_est,
+  condition = corp_rep_data$education == 4,
+  nboot = 500,
+  seed = 123)
+corprep_mga_4
