@@ -84,14 +84,13 @@ corprep.mga <- csem(
   .id = "education")
 
 summarize(corprep.mga, .ci = "CI_percentile", .alpha = 0.05)
-assess(corprep.mga)
 
 corprep.mgd <- testMGD(
   .object = corprep.mga,
   .R_bootstrap = 500,
   .R_permutation = 500,
   .seed = 123)
-print(.object = corprep.mgd, .approach_mgd = "Chin")
+print(x = corprep.mgd, .approach_mgd = "Chin")
 
 # Importance-performance map analysis (not reported in the chapter)
 corprep.ipma <- doIPMA(.object = corprep.est)
