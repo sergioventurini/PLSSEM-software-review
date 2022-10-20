@@ -1,12 +1,12 @@
 /* Example code for the plssem package that accompanies:
    
-   Venturini, S. and Mehmetoglu, M. (2022) Software Packages for Partial Least
-   Squares Structural Equation Modeling: An Updated Review, in
+   Venturini, S., Mehmetoglu, M. and Latan, H. (2023) Software Packages for
+   Partial Least Squares Structural Equation Modeling: An Updated Review, in
    Latan, H. and Noonan, R., Partial Least Squares Path Modeling, 2nd edition,
-   Springer, 2022
+   Springer, 2023
 */
 
-import excel "./data/Corporate Reputation Data.xlsx", firstrow clear
+import excel "/Users/Sergio/Documents/Dati_VENTURINI/2_Research/1_Methods/PLS-SEM_software/data/Corporate Reputation Data.xlsx", firstrow clear
 mvdecode _all, mv(-99)
 
 plssem (LIKE > like_?) (COMP > comp_?) (CUSA > cusa) (CUSL > cusl_?) ///
@@ -14,6 +14,8 @@ plssem (LIKE > like_?) (COMP > comp_?) (CUSA > cusa) (CUSL > cusl_?) ///
        structural(CUSA COMP LIKE, CUSL COMP LIKE CUSA, ///
                   LIKE QUAL CSOR PERF ATTR, COMP QUAL CSOR PERF ATTR) ///
        wscheme(factorial) digits(4) boot(500) seed(123)
+
+estat htmt
 
 plssemplot, loadings
 plssemplot, cross

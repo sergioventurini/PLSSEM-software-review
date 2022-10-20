@@ -1,9 +1,9 @@
 # Example code for the cSEM package that accompanies:
    
-# Venturini, S. and Mehmetoglu, M. (2022) Software Packages for Partial Least
+# Venturini, S., Mehmetoglu, M. and Latan, H. (2023) Software Packages for Partial Least
 # Squares Structural Equation Modeling: An Updated Review, in
 # Latan, H. and Noonan, R., Partial Least Squares Path Modeling, 2nd edition,
-# Springer, 2022
+# Springer, 2023
 
 if (!require(cSEM, quietly = TRUE)) {
   install.packages("devtools")
