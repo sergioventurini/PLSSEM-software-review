@@ -18,10 +18,10 @@ corprep_mm <- constructs(
   composite("CSOR", multi_items("csor_", 1:5), weights = mode_B),
   composite("ATTR", multi_items("attr_", 1:3), weights = mode_B),
   composite("QUAL", multi_items("qual_", 1:8), weights = mode_B),
-  composite("COMP", multi_items("comp_", 1:3), weights = mode_A),
-  composite("LIKE", multi_items("like_", 1:3), weights = mode_A),
-  composite("CUSA", single_item("cusa"), weights = mode_A),
-  composite("CUSL", multi_items("cusl_", 1:3), weights = mode_A))
+  reflective("COMP", multi_items("comp_", 1:3)),
+  reflective("LIKE", multi_items("like_", 1:3)),
+  reflective("CUSA", single_item("cusa")),
+  reflective("CUSL", multi_items("cusl_", 1:3)))
 
 # Specification of the structural model
 corprep_sm <- relationships(
